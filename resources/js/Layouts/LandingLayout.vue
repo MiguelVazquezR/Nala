@@ -5,14 +5,47 @@
 
         <div class="min-h-screen bg-white dark:bg-gray-900">
             <nav class="bg-white dark:bg-gray-800 border-b border-secondary dark:border-gray-700">
-                <div class="flex items-center justify-between h-20 px-8">
-                    <Link :href="route('dashboard')">
-                        <ApplicationMark class="block w-36" />
-                    </Link>
-                    <SearchBar />
-                    <Nav />
+                <!-- Primary Navigation Menu -->
+                <div class="mx-auto px-4 sm:px-6 lg:px-10">
+                    <div class="flex justify-between items-center h-20">
+                        <!-- Logo -->
+                        <ApplicationMark class="block w-1/4 sm:w-1/12" />
+                        <!-- barra de busqueda -->
+                        <SearchBar class="hidden sm:flex" />
+                        <!-- navegacion -->
+                        <Nav class="hidden sm:flex" />
+                        <!-- btn Hamburger -->
+                        <div class="-me-2 flex items-center sm:hidden">
+                            <Dropdown align="right" width="48">
+                                <template #trigger>
+                                    <button
+                                        class="inline-flex items-center justify-center p-2 rounded-md dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-black focus:text-white dark:focus:bg-gray-900 dark:focus:text-gray-400 transition duration-150 ease-in-out"
+                                        @click="showingNavigationDropdown = !showingNavigationDropdown">
+                                        <svg class="size-7" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M4 6h16M4 12h16M4 18h16" />
+                                        </svg>
+                                    </button>
+                                </template>
+
+                                <template #content>
+                                    <DropdownLink v-for="(item, index) in menuOptions" :key="index" :href="item.route"
+                                        :as="item.as">
+                                        {{ item.label }}
+                                    </DropdownLink>
+                                </template>
+                            </Dropdown>
+                        </div>
+                    </div>
                 </div>
             </nav>
+            <header class="hidden sm:block mx-56 mt-5">
+                <ul class="flex items-center justify-between w-full">
+                    <li v-for="(item, index) in categories" :key="index" class="border-b-2 border-transparent hover:border-primary">
+                        <Link :href="route('landing.products', {filter: item})">{{ item }}</Link>
+                    </li>
+                </ul>
+            </header>
             <main>
                 <slot />
             </main>
@@ -22,16 +55,51 @@
 <script>
 import { Head, Link } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
+import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 import SearchBar from '@/Components/MyComponents/Landing/SearchBar.vue';
 import Nav from '@/Components/MyComponents/Landing/Nav.vue';
 
 export default {
+    data() {
+        return {
+            showingNavigationDropdown: false,
+            menuOptions: [
+                {
+                    label: 'Inicio',
+                    route: route('landing.home'),
+                    as: ''
+                },
+                {
+                    label: 'Productos',
+                    route: route('landing.products'),
+                    as: ''
+                },
+                {
+                    label: 'Enviar mensaje',
+                    route: 'https://api.whatsapp.com/send?phone=523310223000&text=Hola!%20vi%20tu%20página%20,%20me%20interesan%20sus%20productos!',
+                    as: 'a'
+                },
+            ],
+            categories: [
+                'Todos',
+                'Collares y colgantes',
+                'Aretes',
+                'Puseras',
+                'Anillos',
+                'Relojes',
+                'Hombres',
+            ]
+        };
+    },
     components: {
         Head,
         Link,
         ApplicationMark,
         SearchBar,
         Nav,
+        Dropdown,
+        DropdownLink,
     },
     props: {
         title: String,
