@@ -22,7 +22,16 @@ class ProductController extends Controller
     
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'category' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'discount_price' => 'nullable|numeric|min:0',
+        ]);
+
+        Product::create($request->except('media'));
+
+        
     }
 
     
