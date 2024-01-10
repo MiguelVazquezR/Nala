@@ -5,7 +5,8 @@ import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
+// import NavLink from '@/Components/NavLink.vue';
+import SideNav from '@/Components/MyComponents/Layout/SideNav.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
 defineProps({
@@ -33,25 +34,25 @@ const logout = () => {
 
         <Banner />
 
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            <nav class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+        <div class="min-h-screen bg-white">
+            <nav class="bg-white border-b border-secondary py-2">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-full mx-auto px-4 lg:px-16 sm:px-6">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
+                            <div class="shrink-1 flex items-center">
                                 <Link :href="route('dashboard')">
-                                    <ApplicationMark class="block h-9 w-auto" />
+                                    <ApplicationMark />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <!-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     inicio
                                 </NavLink>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -121,25 +122,17 @@ const logout = () => {
                                             <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
                                         </button>
 
-                                        <span v-else class="inline-flex rounded-md">
-                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
-                                                {{ $page.props.auth.user.name }}
-
-                                                <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                                </svg>
+                                        <span v-else class="inline-flex rounded-full">
+                                            <button type="button" :class="route().current('profile.*') ? 'border-primary' : ''" class="font-bold inline-flex items-center py-2 px-3 border border-gray-200 text-base rounded-full text-gray-500 bg-transparent hover:text-gray-800 active:border-primary focus:border-primary transition ease-in-out duration-200">
+                                                {{ 'N' }}
                                             </button>
                                         </span>
                                     </template>
 
                                     <template #content>
-                                        <!-- Account Management -->
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
-                                            Manage Account
-                                        </div>
 
                                         <DropdownLink :href="route('profile.show')">
-                                            Profile
+                                            Perfil
                                         </DropdownLink>
 
                                         <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
@@ -151,7 +144,7 @@ const logout = () => {
                                         <!-- Authentication -->
                                         <form @submit.prevent="logout">
                                             <DropdownLink as="button">
-                                                Log Out
+                                                Cerrar sesión
                                             </DropdownLink>
                                         </form>
                                     </template>
@@ -281,8 +274,13 @@ const logout = () => {
             </header>
 
             <!-- Page Content -->
-            <main>
-                <slot />
+            <main class="lg:grid grid-cols-7 space-x-9 mt-12">
+                <div class="hidden lg:block">
+                    <SideNav />
+                </div>
+                <div class="col-span-5">
+                    <slot />
+                </div>
             </main>
         </div>
     </div>
