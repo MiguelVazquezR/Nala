@@ -6,6 +6,42 @@
     display: none;
 }
 
+*::-webkit-scrollbar {
+	width: 3px;
+	background: transparent;
+    height: 4px; /* Ajusta según tus preferencias */
+}
+
+*::-webkit-scrollbar-thumb {
+	background: #cccccc;
+	border-radius: 2px;
+}
+
+*::-webkit-scrollbar-thumb:horizontal {
+	background: #cccccc;
+	border-radius: 2px;
+}
+
 body {
     font-family: 'Bellefair', sans-serif;
 }
+
+@layer components{
+    .input{
+        @apply h-9 w-full bg-transparent border placeholder:text-gray-400 border-secondary text-gray-600 text-sm rounded-md focus:ring-0 focus:border-2 focus:border-secondary block p-2.5;
+    }
+
+    .textarea{
+        @apply bg-transparent placeholder:text-gray-400 border border-secondary text-gray1 text-sm rounded-md focus:ring-0 focus:border-2 focus:border-secondary block w-full p-2.5;
+    }
+
+    .label{
+        @apply block mb-2 text-sm font-medium text-gray-600;
+    }
+    
+    .hover-3dbuttom{
+        @apply hover:shadow-md transition ease-in-out duration-300 hover:-translate-y-2;
+    }
+      
+}
+
