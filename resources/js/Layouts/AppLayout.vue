@@ -274,7 +274,7 @@ const logout = () => {
             </header>
 
             <!-- Page Content -->
-            <main class="lg:grid grid-cols-7 space-x-9 mt-12">
+            <main class="lg:grid grid-cols-7 lg:space-x-9 mt-12">
                 <div class="hidden lg:block">
                     <SideNav />
                 </div>

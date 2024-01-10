@@ -1,7 +1,55 @@
 <template>
     <AppLayout title="Nuevo producto">
-        <div class="w-1/2 mx-auto rounded-md border border-secondary py-5 px-3">
-            <h1 class="font-bold">Agregar producto</h1>
+        <div class="w-2/3 mx-auto rounded-md border border-secondary p-5">
+            <h1 class="font-bold text-lg">Agregar producto</h1>
+            <div class="grid grid-cols-3 mt-3">
+                <InputFilePreview class="" @imagen="saveImage" />
+
+                <div class="col-span-2">
+                    <div class="mt-3">
+                        <div class="flex items-center">
+                            <InputLabel value="Nombre del producto*" class="ml-3 mb-1" />
+                            <el-tooltip content="Escribe el nombre y una breve descripción del producto, este se mostrará en la vista de la sección de los productos" placement="top">
+                                <i class="fa-regular fa-circle-question ml-2 text-primary text-xs"></i>
+                            </el-tooltip>
+                        </div>
+                        <input v-model="form.name" class="input" type="text" />
+                        <InputError :message="form.errors.name" />
+                    </div>
+
+                    <div class="mt-2">
+                        <InputLabel value="Nombre del producto*" class="ml-3 mb-1" />
+                        <el-select v-model="form.category" clearable placeholder="Seleccione"
+                        no-data-text="No hay opciones disponibles" no-match-text="No se encontraron coincidencias">
+                        <el-option v-for="category in categories" :key="category" :label="category" :value="category" />
+                        </el-select>
+                    </div>
+
+                    <div class="flex items-center space-x-4 mt-3">
+                        <div class="relative">
+                            <InputLabel value="Precio*" class="ml-3 mb-1" />
+                            <input v-model="form.price" step="0.01" class="input pl-7" type="number" placeholder="0" />
+                            <p class="text-sm text-secondary absolute top-[26px] left-2 border-r border-secondary pr-[5px] py-[5px]">$</p>
+                            <InputError :message="form.errors.price" />
+                        </div>
+
+                        <div class="relative">
+                            <div class="flex items-center">
+                                <InputLabel value="Precio con descuento" class="ml-3 mb-1" />
+                                <el-tooltip content="Escribe el nombre y una breve descripción del producto, este se mostrará en la vista de la sección de los productos" placement="right">
+                                    <i class="fa-regular fa-circle-question ml-2 text-primary text-xs"></i>
+                                </el-tooltip>
+                            </div>
+                            <input v-model="form.discount_price" step="0.01" class="input pl-7" type="number" placeholder="0" />
+                            <p class="text-sm text-secondary absolute top-[26px] left-2 border-r border-secondary pr-[5px] py-[5px]">$</p>
+                            <InputError :message="form.errors.discount_price" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="text-right">
+                    <PrimaryButton>Publicar</PrimaryButton>
+                </div>
         </div>
     </AppLayout>
   
@@ -9,21 +57,59 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import Back from '@/Components/MyComponents/Back.vue';
+import InputFilePreview from '@/Components/MyComponents/InputFilePreview.vue';
+import InputLabel from "@/Components/InputLabel.vue";
+import InputError from "@/Components/InputError.vue";
+import { useForm } from "@inertiajs/vue3";
 
 export default {
 data(){
+     const form = useForm({
+        name: null,
+        category: null,
+        price: null,
+        discount_price: null,
+        media: null,
+    });
     return {
-
+        form,
+        categories: [
+            'Collares y colgantes',
+            'Pulseras',
+            'Anillos',
+            'Relojes',
+            'Aretes',
+        ],
     }
 },
 components:{
 AppLayout,
+PrimaryButton,
+InputFilePreview,
+InputLabel,
+InputError,
+Back
 },
 props:{
 
 },
 methods:{
-
+    store() {
+    this.form.post(route("products.store"), {
+      onSuccess: () => {
+        this.$notify({
+          title: "Correcto",
+          message: "Se ha agregado un nuevo producto",
+          type: "success",
+        });
+      },
+    });
+  },
+saveImage(image) {
+    this.form.media = image;
+  }
 }
 }
 </script>
