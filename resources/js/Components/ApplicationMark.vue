@@ -1,5 +1,5 @@
 <template>
     <figure>
-        <img src="../../../public/images/logo.png" alt="logo">
+        <img class="w-[9%]" src="../../../public/images/logo.png" alt="logo">
     </figure>
 </template>
