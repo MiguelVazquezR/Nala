@@ -2,8 +2,16 @@
     <AppLayout title="Nuevo producto">
         <div class="w-2/3 mx-auto rounded-md border border-secondary p-5">
             <h1 class="font-bold text-lg">Agregar producto</h1>
-            <div class="grid grid-cols-3 mt-3">
-                <InputFilePreview class="" @imagen="saveImage" />
+            <div class="grid grid-cols-3 space-x-3 mt-3">
+                <div>
+                    <InputFilePreview v-if="currentImage == 1" @imagen="saveImage" />
+                    <InputFilePreview v-if="currentImage == 2" @imagen="saveImage" />
+                    <p class="text-center mt-2">
+                        <i @click="currentImage = currentImage - 1" v-if="currentImage == 2" class="fa-solid fa-angle-left text-xs mr-2 cursor-pointer p-1"></i>
+                        Imagen {{ currentImage }} de 2
+                        <i @click="currentImage = currentImage + 1" v-if="currentImage == 1" class="fa-solid fa-angle-right text-xs ml-2 cursor-pointer p-1"></i>
+                    </p>
+                </div>
 
                 <div class="col-span-2">
                     <div class="mt-3">
@@ -75,6 +83,7 @@ data(){
     });
     return {
         form,
+        currentImage: 1,
         categories: [
             'Collares y colgantes',
             'Pulseras',

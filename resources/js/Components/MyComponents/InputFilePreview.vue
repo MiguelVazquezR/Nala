@@ -1,7 +1,7 @@
 <template>
   <div class="inline">
     <figure @click="triggerImageInput"
-      class="flex items-center justify-center rounded-md border border-dashed border-secondary w-56 h-60 cursor-pointer relative">
+      class="flex items-center justify-center rounded-md border border-dashed border-secondary w-68 h-60 cursor-pointer relative">
       <i v-if="image && canDelete" @click.stop="clearImage"
         class="fa-solid fa-xmark absolute p-1 top-1 right-1 z-10 text-sm"></i>
         <svg v-if="!image" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
