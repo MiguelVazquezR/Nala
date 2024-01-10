@@ -7,13 +7,11 @@
             <nav class="bg-white dark:bg-gray-800 border-b border-secondary dark:border-gray-700">
                 <!-- Primary Navigation Menu -->
                 <div class="mx-auto px-4 sm:px-6 lg:px-10">
-                    <div class="flex justify-between h-20">
+                    <div class="flex justify-between items-center h-20">
                         <!-- Logo -->
-                        <Link :href="route('dashboard')">
-                        <ApplicationMark class="block w-36" />
-                        </Link>
+                        <ApplicationMark class="block w-1/4 sm:w-1/12" />
                         <!-- barra de busqueda -->
-                        <SearchBar class="hidden sm:flex self-center" />
+                        <SearchBar class="hidden sm:flex" />
                         <!-- navegacion -->
                         <Nav class="hidden sm:flex" />
                         <!-- btn Hamburger -->
@@ -24,20 +22,16 @@
                                         class="inline-flex items-center justify-center p-2 rounded-md dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-black focus:text-white dark:focus:bg-gray-900 dark:focus:text-gray-400 transition duration-150 ease-in-out"
                                         @click="showingNavigationDropdown = !showingNavigationDropdown">
                                         <svg class="size-7" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                            <path
-                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M4 6h16M4 12h16M4 18h16" />
-                                            <!-- <path
-                                                :class="{ 'hidden': !showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }"
-                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M6 18L18 6M6 6l12 12" /> -->
                                         </svg>
                                     </button>
                                 </template>
 
                                 <template #content>
-                                    <DropdownLink :href="route('profile.show')">
-                                        Profile
+                                    <DropdownLink v-for="(item, index) in menuOptions" :key="index" :href="item.route"
+                                        :as="item.as">
+                                        {{ item.label }}
                                     </DropdownLink>
                                 </template>
                             </Dropdown>
@@ -45,6 +39,13 @@
                     </div>
                 </div>
             </nav>
+            <header class="hidden sm:block mx-56 mt-5">
+                <ul class="flex items-center justify-between w-full">
+                    <li v-for="(item, index) in categories" :key="index" class="border-b-2 border-transparent hover:border-primary">
+                        <Link :href="route('landing.products', {filter: item})">{{ item }}</Link>
+                    </li>
+                </ul>
+            </header>
             <main>
                 <slot />
             </main>
@@ -63,6 +64,32 @@ export default {
     data() {
         return {
             showingNavigationDropdown: false,
+            menuOptions: [
+                {
+                    label: 'Inicio',
+                    route: route('landing.home'),
+                    as: ''
+                },
+                {
+                    label: 'Productos',
+                    route: route('landing.products'),
+                    as: ''
+                },
+                {
+                    label: 'Enviar mensaje',
+                    route: 'https://api.whatsapp.com/send?phone=523310223000&text=Hola!%20vi%20tu%20página%20,%20me%20interesan%20sus%20productos!',
+                    as: 'a'
+                },
+            ],
+            categories: [
+                'Todos',
+                'Collares y colgantes',
+                'Aretes',
+                'Puseras',
+                'Anillos',
+                'Relojes',
+                'Hombres',
+            ]
         };
     },
     components: {
