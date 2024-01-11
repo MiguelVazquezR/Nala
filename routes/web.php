@@ -28,8 +28,14 @@ Route::get('/', function () {
 })->name('landing.home');
 
 Route::get('/productos', function () {
-    return Inertia::render('Products');
+    $filter = request('filter') ?? 'Todos';
+
+    return Inertia::render('Products', compact('filter'));
 })->name('landing.products');
+
+Route::get('/producto/{product}', function ($product) {
+    return Inertia::render('Show', compact('product'));
+})->name('landing.products.show');
 
 //Products routes---------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------

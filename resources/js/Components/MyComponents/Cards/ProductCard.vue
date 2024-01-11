@@ -1,5 +1,5 @@
 <template>
-    <div class="border rounded-[3px] py-3 border-secondary h-64 lg:h-80 lg:w-11/12 flex flex-col justify-center">
+    <Link :href="route('landing.products.show', product)" class="border rounded-[3px] py-3 border-secondary h-64 lg:h-80 lg:w-11/12 flex flex-col justify-center">
         <figure class="h-2/3 flex items-center justify-center">
             <img src="@/../../public/images/jewerly.png" class="object-cover">
         </figure>
@@ -10,12 +10,15 @@
             <p class="text-gray1 line-through">$550</p>
             <p class="text-center">$450</p>
         </footer>
-    </div>
+    </Link>
 </template>
 <script>
+import { Link } from '@inertiajs/vue3';
+
 export default {
     props: {
         product: Number,
-    }
+    },
+    components: { Link }
 }
 </script>

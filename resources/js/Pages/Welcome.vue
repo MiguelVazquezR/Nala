@@ -1,9 +1,18 @@
 <template>
     <LandingLayout title="Inicio">
+        <header class="hidden lg:block mx-3 lg:mx-56 mt-5">
+            <ul class="flex items-center justify-between w-full">
+                <li v-for="(item, index) in categories" :key="index"
+                    class="border-b-2 border-transparent hover:border-primary">
+                    <Link :href="route('landing.products', { filter: item })">{{ item }}</Link>
+                </li>
+            </ul>
+        </header>
+
         <!-- banner -->
         <section class="h-28 lg:h-64 mt-2">
             <Carousel v-bind="bannerSettings" :itemsToShow="1">
-                <Slide v-for="slide in 3" :key="slide">
+                <Slide v-for="slide in 3" :key="slide" class="px-[2px]">
                     <img src="@/../../public/images/banner1.png" class="h-full object-contain">
                 </Slide>
                 <template #addons>
@@ -14,16 +23,16 @@
 
         <!-- productos populares -->
         <section>
-            <h1 class="flex items-center space-x-2 text-lg py-2 mx-3 mt-5 lg:mt-12">
+            <h1 class="flex items-center space-x-2 text-lg py-2 md:px-16 mx-3 mt-5 lg:mt-12">
                 <span>Productos populares</span>
-                <Link :href="route('landing.products', {filters: 'Todos'})">
-                    <PrimaryButton class="!py-1 !px-2">Ver todos</PrimaryButton>
+                <Link :href="route('landing.products', { filter: 'Todos' })">
+                <PrimaryButton class="!py-1 !px-2">Ver todos</PrimaryButton>
                 </Link>
             </h1>
 
             <article class="items-center rounded-[3px] mt-3 py-2 px-3 lg:px-14 active:cursor-grabbing">
                 <Carousel v-bind="popularSettings" :breakpoints="breakpoints">
-                    <Slide v-for="slide in popularProducts" :key="slide">
+                    <Slide v-for="slide in popularProducts" :key="slide" class="px-1">
                         <ProductCard :product="slide" />
                     </Slide>
                     <template #addons>
@@ -32,16 +41,16 @@
                 </Carousel>
             </article>
         </section>
-        
+
         <!-- Galeria -->
         <section>
-            <h1 class="text-lg mx-3 mt-5">
+            <h1 class="text-lg mx-3 md:mx-16 mt-5">
                 <span>Galería</span>
             </h1>
 
             <article class="items-center rounded-[3px] mt-1 py-1 px-3 lg:px-14 active:cursor-grabbing">
                 <Carousel v-bind="galerySettings" :breakpoints="breakpoints">
-                    <Slide v-for="slide in 20" :key="slide">
+                    <Slide v-for="slide in 20" :key="slide" class="px-1">
                         <img src="@/../../public/images/galery1.png" class="w-full">
                     </Slide>
                 </Carousel>
@@ -60,7 +69,16 @@ import 'vue3-carousel/dist/carousel.css';
 export default {
     data() {
         return {
-            popularProducts: [1,2,3,4,5,6,7,8,9,10],
+            categories: [
+                'Todos',
+                'Collares y colgantes',
+                'Aretes',
+                'Puseras',
+                'Anillos',
+                'Relojes',
+                'Hombres',
+            ],
+            popularProducts: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             popularSettings: {
                 wrapAround: true,
                 itemsToShow: 2,
@@ -108,26 +126,3 @@ export default {
     },
 }
 </script>
-<style>
-.carousel__item {
-    min-height: 200px;
-    width: 100%;
-    background-color: var(--vc-clr-primary);
-    color: var(--vc-clr-white);
-    font-size: 20px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.carousel__slide {
-    padding: 10px;
-}
-
-.carousel__prev,
-.carousel__next {
-    box-sizing: content-box;
-    border: 5px solid white;
-}
-</style>

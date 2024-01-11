@@ -3,7 +3,7 @@
 
         <Head :title="title" />
 
-        <div class="min-h-screen bg-white dark:bg-gray-900">
+        <div class="min-h-screen flex flex-col bg-white dark:bg-gray-900">
             <nav class="bg-white dark:bg-gray-800 border-b border-secondary dark:border-gray-700">
                 <!-- Primary Navigation Menu -->
                 <div class="mx-auto px-4 sm:px-6 lg:px-10">
@@ -11,7 +11,7 @@
                         <!-- Logo -->
                         <ApplicationMark class="w-1/3 sm:w-1/12" />
                         <!-- barra de busqueda -->
-                        <SearchBar class="hidden sm:flex" />
+                        <SearchBar class="hidden sm:flex w-1/3" />
                         <!-- navegacion -->
                         <Nav class="hidden sm:flex" />
                         <!-- btn Hamburger -->
@@ -39,18 +39,13 @@
                     </div>
                 </div>
             </nav>
-            <header class="hidden sm:block mx-56 mt-5">
-                <ul class="flex items-center justify-between w-full">
-                    <li v-for="(item, index) in categories" :key="index"
-                        class="border-b-2 border-transparent hover:border-primary">
-                        <Link :href="route('landing.products', { filter: item })">{{ item }}</Link>
-                    </li>
-                </ul>
+            <header class="sm:hidden mx-3 lg:mx-56 mt-5">
+                <SearchBar />
             </header>
             <main>
                 <slot />
             </main>
-            <footer class="mt-7 border-t border-secondary pt-3">
+            <footer class="border-t border-secondary pt-3 mt-auto">
                 <section class="px-3 lg:grid grid-cols-4 gap-x-4">
                     <div>
                         <ApplicationMark class="block w-1/3 sm:w-1/3" />
