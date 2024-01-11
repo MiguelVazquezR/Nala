@@ -1,6 +1,6 @@
 <template>
-  <button @click="goBack" class="flex justify-center items-center rounded-full py-[9px] px-3 focus:outline-none hover-3dbuttom">
-        <i class="fa-solid fa-angle-left"></i>
+  <button @click="goBack" class="flex justify-center items-center rounded-full size-5 focus:outline-none hover:bg-black hover:text-white">
+        <i class="fa-solid fa-angle-left text-xs"></i>
   </button>
 </template>
 
