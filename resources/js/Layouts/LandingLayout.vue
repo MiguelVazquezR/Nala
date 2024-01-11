@@ -9,7 +9,7 @@
                 <div class="mx-auto px-4 sm:px-6 lg:px-10">
                     <div class="flex justify-between items-center h-20">
                         <!-- Logo -->
-                        <ApplicationMark class="block w-1/4 sm:w-1/12" />
+                        <ApplicationMark class="block w-1/3 sm:w-1/12" />
                         <!-- barra de busqueda -->
                         <SearchBar class="hidden sm:flex" />
                         <!-- navegacion -->
