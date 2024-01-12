@@ -20,7 +20,7 @@ class ProductController extends Controller
     
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::whereNotIn('id', [1])->get('name');
 
         return inertia('Product/Create', compact('categories'));
     }
@@ -61,7 +61,7 @@ class ProductController extends Controller
     public function edit($product_id)
     {
         $product = Product::with('media')->find($product_id);
-        $categories = Category::all();
+        $categories = Category::whereNotIn('id', [1])->get('name');
 
         // return $product;
 
