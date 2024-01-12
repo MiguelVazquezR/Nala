@@ -1,6 +1,6 @@
 <template>
     <AppLayout title="Nuevo producto">
-        <div class="lg:w-2/3 mx-auto rounded-md lg:border border-secondary p-5">
+        <div v-if="products_quantity < 50 " class="lg:w-2/3 mx-auto rounded-md lg:border border-secondary p-5">
             <h1 class="font-bold text-lg text-center lg:text-left">Agregar producto</h1>
             <div class="lg:grid grid-cols-3 space-x-3 mt-3">
                 <div>
@@ -60,6 +60,10 @@
                     <PrimaryButton :disabled="form.processing" @click="store">Publicar</PrimaryButton>
                 </div>
         </div>
+        <div v-else class="text-center text-gray-500">
+            <p class="text-3xl mb-3">¡Lo sentimos!</p>
+            <p class="">Has excedido el límite de productos disponibles (50). Para poder aumentar el límite ponte en contacto con el equipo de DTW</p>
+        </div>
     </AppLayout>
   
 </template>
@@ -97,7 +101,8 @@ InputError,
 Back
 },
 props:{
-categories: Array
+categories: Array,
+products_quantity: Number
 },
 methods:{
     store() {

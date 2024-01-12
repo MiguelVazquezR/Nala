@@ -21,8 +21,11 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $products_quantity = Product::all()->count();
 
-        return inertia('Product/Create', compact('categories'));
+        // return $products_quantity;
+
+        return inertia('Product/Create', compact('categories', 'products_quantity'));
     }
 
     
