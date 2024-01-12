@@ -20,7 +20,7 @@ class ProductController extends Controller
     
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::whereNotIn('id', [1])->get('name');
 
         return inertia('Product/Create', compact('categories'));
     }
@@ -61,7 +61,9 @@ class ProductController extends Controller
     public function edit($product_id)
     {
         $product = Product::with('media')->find($product_id);
-        $categories = Category::all();
+        $categories = Category::whereNotIn('id', [1])->get('name');
+
+        // return $product;
 
         return inertia('Product/Edit', compact('product', 'categories'));
     }
@@ -77,6 +79,15 @@ class ProductController extends Controller
         ]);
 
         $product->update($request->except(['image_cover1', 'image_cover1']));
+
+        // Eliminar imágenes antiguas solo si se borró desde el input y no se agregó una nueva
+        if ($request->clearedCover1) {
+            $product->clearMediaCollection('cover1');
+        }
+
+        if ($request->clearedCover2) {
+            $product->clearMediaCollection('cover2');
+        }
 
         return to_route('products.index');
     }
@@ -95,11 +106,21 @@ class ProductController extends Controller
 
             // update image
 
-            //Elimina las imagenes
-            if (!$request->hasFile('image_cover1')) {
+            // Eliminar imágenes antiguas solo si se borró desde el input y no se agregó una nueva
+            if ($request->clearedCover1) {
                 $product->clearMediaCollection('cover1');
             }
-            if (!$request->hasFile('image_cover2')) {
+
+            if ($request->clearedCover2) {
+                $product->clearMediaCollection('cover2');
+            }
+
+            // Eliminar imágenes antiguas solo si se proporcionan nuevas imágenes
+            if ($request->hasFile('image_cover1')) {
+                $product->clearMediaCollection('cover1');
+            }
+
+            if ($request->hasFile('image_cover2')) {
                 $product->clearMediaCollection('cover2');
             }
 

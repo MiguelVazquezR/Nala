@@ -36,13 +36,13 @@ Route::post('products/update-with-media/{product}', [ProductController::class, '
 //Banners routes---------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------
 Route::resource('banners', BannerController::class)->middleware('auth');
-Route::post('banners/update-with-media/{banner}', [ProductController::class, 'updateWithMedia'])->name('banners.update-with-media');
+Route::post('banners/update-with-media/{banner}', [BannerController::class, 'updateWithMedia'])->name('banners.update-with-media');
 
 
 //Galery routes---------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------
 Route::resource('galeries', GaleryController::class)->middleware('auth');
-Route::post('galeries/update-with-media/{galery}', [ProductController::class, 'updateWithMedia'])->name('galeries.update-with-media');
+Route::post('galeries/update-with-media/{galery}', [GaleryController::class, 'updateWithMedia'])->name('galeries.update-with-media');
 
 
 //Categories routes---------------------------------------------------------------------------

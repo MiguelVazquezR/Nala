@@ -12,8 +12,8 @@
         <!-- banner -->
         <section class="h-28 lg:h-64 mt-2">
             <Carousel v-bind="bannerSettings" :itemsToShow="1">
-                <Slide v-for="slide in 3" :key="slide" class="px-[2px]">
-                    <img src="@/../../public/images/banner1.png" class="h-full object-contain">
+                <Slide v-for="slide in banners.media" :key="slide" class="px-[2px]">
+                    <img :src="slide.original_url" class="h-28 lg:h-64 w-full object-contain">
                 </Slide>
                 <template #addons>
                     <Pagination />
@@ -50,8 +50,8 @@
 
             <article class="items-center rounded-[3px] mt-1 py-1 px-3 lg:px-14 active:cursor-grabbing">
                 <Carousel v-bind="galerySettings" :breakpoints="breakpoints">
-                    <Slide v-for="slide in 20" :key="slide" class="px-1">
-                        <img src="@/../../public/images/galery1.png" class="w-full">
+                    <Slide v-for="slide in galery.media" :key="slide" class="px-1">
+                        <img :src="slide.original_url" class="h-28 lg:h-64 w-full object-contain">
                     </Slide>
                 </Carousel>
             </article>
@@ -105,6 +105,8 @@ export default {
     },
     props: {
         categories: Array,
+        banners: Array,
+        galery: Array,
         popularProducts: Array,
     },
     components: {

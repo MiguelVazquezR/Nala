@@ -1,8 +1,8 @@
 <template>
     <AppLayout title="Nuevo producto">
-        <div class="w-2/3 mx-auto rounded-md border border-secondary p-5">
-            <h1 class="font-bold text-lg">Agregar producto</h1>
-            <div class="grid grid-cols-3 space-x-3 mt-3">
+        <div class="lg:w-2/3 mx-auto rounded-md lg:border border-secondary p-5">
+            <h1 class="font-bold text-lg text-center lg:text-left">Agregar producto</h1>
+            <div class="lg:grid grid-cols-3 space-x-3 mt-3">
                 <div>
                     <InputFilePreview v-show="currentImage == 1" @imagen="this.form.image_cover1 = $event;" />
                     <InputFilePreview v-show="currentImage == 2" @imagen="this.form.image_cover2 = $event;" />
@@ -56,8 +56,8 @@
                     </div>
                 </div>
             </div>
-                <div class="text-right">
-                    <PrimaryButton @click="store">Publicar</PrimaryButton>
+                <div class="text-right mt-7 lg:mt-0">
+                    <PrimaryButton :disabled="form.processing" @click="store">Publicar</PrimaryButton>
                 </div>
         </div>
     </AppLayout>
