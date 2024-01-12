@@ -17,13 +17,12 @@
                     <p class="text-center">$450</p>
                 </footer>
                 <div class="flex justify-center mx-10 mt-5">
-                    <a :href="wpUrl" target="_blank" class="block">
-                        <PrimaryButton class="w-full px-14">Enviar mensaje</PrimaryButton>
+                    <a :href="wpUrl" target="_blank" class="w-full">
+                        <PrimaryButton class="w-full flex justify-center">Enviar mensaje</PrimaryButton>
                     </a>
                 </div>
             </main>
         </section>
-
     </LandingLayout>
 </template>
 <script>
