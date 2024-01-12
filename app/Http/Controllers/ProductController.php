@@ -20,8 +20,12 @@ class ProductController extends Controller
     
     public function create()
     {
-        $categories = Category::all();
+
+        // $categories = Category::all();
         $products_quantity = Product::all()->count();
+
+        $categories = Category::whereNotIn('id', [1])->get('name');
+
 
         // return $products_quantity;
 
@@ -64,7 +68,7 @@ class ProductController extends Controller
     public function edit($product_id)
     {
         $product = Product::with('media')->find($product_id);
-        $categories = Category::all();
+        $categories = Category::whereNotIn('id', [1])->get('name');
 
         // return $product;
 
