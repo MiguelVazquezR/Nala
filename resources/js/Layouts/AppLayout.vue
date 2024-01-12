@@ -41,7 +41,7 @@ const logout = () => {
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="shrink-1 flex items-center w-[10%]">
+                            <div class="shrink-1 flex items-center w-[25%] lg:w-[10%]">
                                 <Link :href="route('dashboard')">
                                     <ApplicationMark />
                                 </Link>
