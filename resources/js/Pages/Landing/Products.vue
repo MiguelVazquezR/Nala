@@ -19,29 +19,37 @@
                     <div class="px-4">
                         <div v-for="(item, index) in categories" :key="index" class="flex items-center mb-1">
                             <input v-model="currentCategory" :id="'country-option-' + index" type="radio" name="countries"
-                                :value="item"
+                                :value="item.name"
                                 class="size-3 border-gray-300 checked:text-primary active:text-primary focus:ring-0"
                                 :aria-labelledby="'country-option-' + index" :aria-describedby="'country-option-' + index">
                             <label :for="'country-option-' + index" class="text-sm font-medium text-gray-900 ml-2 block">
-                                {{ item }}
+                                {{ item.name }}
                             </label>
                         </div>
                     </div>
                 </template>
             </Dropdown>
         </header>
-
         <!-- desktop -->
         <header class="hidden lg:block mx-3 lg:mx-56 mt-5">
             <ul class="flex items-center justify-between w-full">
                 <li v-for="(item, index) in categories" :key="index" class="border-b-2 hover:border-primary"
-                    :class="item == currentCategory ? 'border-primary' : 'border-transparent'">
-                    <button @click="currentCategory = item">{{ item }}</button>
+                    :class="item.name == currentCategory ? 'border-primary' : 'border-transparent'">
+                    <button @click="currentCategory = item.name">{{ item.name }}</button>
                 </li>
             </ul>
         </header>
+        <div v-if="currentQuery" class="mt-8 mb-4 mx-3 lg:mx-24">
+            <span class="bg-secondary px-1 py-px rounded-sm">
+                Estas buscando: "{{ currentQuery }}"
+                <button @click="removeQuery()" class="ml-2">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+            </span>
+        </div>
         <section class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:mt-11 mx-3 lg:mx-24 mb-5">
-            <ProductCard v-for="(item, index) in products" :key="index" :product="item" class="!w-full" />
+            <ProductCard v-for="(item, index) in filteredProducts" :key="index" :product="item" class="!w-full" />
+            <p v-if="!filteredProducts.length" class="text-gray1 text-center my-8 col-span-full">No hay productos para mostrar</p>
         </section>
     </LandingLayout>
 </template>
@@ -55,15 +63,8 @@ export default {
     data() {
         return {
             currentCategory: 'Todos',
-            categories: [
-                'Todos',
-                'Collares y colgantes',
-                'Aretes',
-                'Puseras',
-                'Anillos',
-                'Relojes',
-                'Hombres',
-            ],
+            currentQuery: null,
+            filteredProducts: [],
         };
     },
     components: {
@@ -73,16 +74,44 @@ export default {
         Link,
     },
     props: {
-        products: {
-            type: Array,
-            default: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-        },
+        products: Array,
         filter: {
             type: String,
             default: "Todos"
-        }
+        },
+        query: String,
+        categories: Array,
     },
     methods: {
+        removeQuery() {
+            // Obtener la URL actual
+            const url = new URL(window.location.href);
+
+            // Remover la variable "query"
+            url.searchParams.delete('query');
+
+            this.currentQuery = null;
+            // Actualizar la URL sin recargar la página
+            window.history.replaceState({}, '', url.toString());
+
+            this.filterProducts();
+        },
+        filterByQuery() {
+            if (this.currentQuery) {
+                const regex = new RegExp(this.currentQuery, 'i'); // 'i' hace la búsqueda sin distinguir mayúsculas y minúsculas
+                this.filteredProducts = this.filteredProducts.filter(product => regex.test(product.name));
+            }
+        },
+        filterProducts() {
+            if (this.currentCategory == 'Todos') {
+                this.filteredProducts = this.products;
+            } else {
+                this.filteredProducts = this.products.filter(item => item.category == this.currentCategory);
+            }
+
+            // buscar también por query
+            this.filterByQuery();
+        }
     },
     watch: {
         currentCategory(newVal) {
@@ -92,10 +121,15 @@ export default {
 
             // Actualiza la URL
             window.history.replaceState({}, document.title, currentURL.href);
+
+            // cambiar productos a mostrar
+            this.filterProducts();
         },
     },
     mounted() {
         this.currentCategory = this.filter;
+        this.currentQuery = this.query;
+        this.filterProducts();
     },
 }
 </script>

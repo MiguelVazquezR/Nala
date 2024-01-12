@@ -3,18 +3,18 @@
         <Back class="mt-5 lg:mt-8 mx-3 lg:mx-24" />
         <section class="mt-2 py-8 lg:mx-48 lg:grid grid-cols-2 gap-x-1">
             <Carousel v-bind="settings" :itemsToShow="1">
-                <Slide v-for="slide in 3" :key="slide">
-                    <img src="@/../../public/images/jewerly.png" class="h-full object-contain">
+                <Slide v-for="slide in product.media" :key="slide">
+                    <img :src="slide.original_url" class="object-cover h-full w-full">
                 </Slide>
                 <template #addons>
                     <Pagination />
                 </template>
             </Carousel>
-            <main class="mt-5 lg:mt-0 mx-2">
-                <p class="text-center">Pulsera Pantera Oro amarillo 14K Zirconias blancas y verdes {{ product }}</p>
+            <main class="mt-5 lg:mt-0 mx-2 self-center">
+                <p class="text-center">{{ product.name }}</p>
                 <footer class="mt-5 flex items-center justify-center space-x-10">
-                    <p class="text-gray1 line-through">$550</p>
-                    <p class="text-center">$450</p>
+                    <p class="text-gray1" :class="product.discount_price ? 'line-through' : null">${{ product.price }}</p>
+                    <p v-if="product.discount_price" class="text-center">${{ product.discount_price }}</p>
                 </footer>
                 <div class="flex justify-center mx-10 mt-5">
                     <a :href="wpUrl" target="_blank" class="w-full">
@@ -40,7 +40,7 @@ export default {
                 itemsToShow: 1,
                 snapAlign: 'start',
             },
-            wpUrl: 'https://api.whatsapp.com/send?phone=523310223000&text=Hola!%20vi%20tu%20página,%20me%20interesa%20el%20producto%20*' + this.product + '*',
+            wpUrl: 'https://api.whatsapp.com/send?phone=523310223000&text=Hola!%20vi%20tu%20página,%20me%20interesa%20el%20producto%20*' + this.product.name + '*',
         };
     },
     components: {
@@ -53,7 +53,7 @@ export default {
         PrimaryButton
     },
     props: {
-        product: String,
+        product: Object,
     }
 }
 </script>

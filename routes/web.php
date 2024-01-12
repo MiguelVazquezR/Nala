@@ -3,6 +3,7 @@
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GaleryController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -21,24 +22,10 @@ Route::middleware([
 
 // Landing routes -------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('landing.home');
+Route::get('/', [LandingController::class, 'home'])->name('landing.home');
+Route::get('/productos', [LandingController::class, 'products'])->name('landing.products');
+Route::get('/producto/{product}', [LandingController::class, 'show'])->name('landing.products.show');
 
-Route::get('/productos', function () {
-    $filter = request('filter') ?? 'Todos';
-
-    return Inertia::render('Products', compact('filter'));
-})->name('landing.products');
-
-Route::get('/producto/{product}', function ($product) {
-    return Inertia::render('Show', compact('product'));
-})->name('landing.products.show');
 
 //Products routes---------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------
