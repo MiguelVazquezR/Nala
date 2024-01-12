@@ -4,7 +4,7 @@
             <ul class="flex items-center justify-between w-full">
                 <li v-for="(item, index) in categories" :key="index"
                     class="border-b-2 border-transparent hover:border-primary">
-                    <Link :href="route('landing.products', { filter: item })">{{ item }}</Link>
+                    <Link :href="route('landing.products', { filter: item.name })">{{ item.name }}</Link>
                 </li>
             </ul>
         </header>
@@ -32,7 +32,7 @@
 
             <article class="items-center rounded-[3px] mt-3 py-2 px-3 lg:px-14 active:cursor-grabbing">
                 <Carousel v-bind="popularSettings" :breakpoints="breakpoints">
-                    <Slide v-for="slide in popularProducts" :key="slide" class="px-1">
+                    <Slide v-for="slide in popularProducts" :key="slide.id" class="px-1">
                         <ProductCard :product="slide" />
                     </Slide>
                     <template #addons>
@@ -69,16 +69,6 @@ import 'vue3-carousel/dist/carousel.css';
 export default {
     data() {
         return {
-            categories: [
-                'Todos',
-                'Collares y colgantes',
-                'Aretes',
-                'Puseras',
-                'Anillos',
-                'Relojes',
-                'Hombres',
-            ],
-            popularProducts: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             popularSettings: {
                 wrapAround: true,
                 itemsToShow: 2,
@@ -112,6 +102,10 @@ export default {
                 },
             },
         };
+    },
+    props: {
+        categories: Array,
+        popularProducts: Array,
     },
     components: {
         LandingLayout,
