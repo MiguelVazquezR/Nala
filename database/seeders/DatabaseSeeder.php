@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Banner;
+use App\Models\Category;
+use App\Models\Galery;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,9 +18,41 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\User::create([
+            'name' => 'Admin',
+            'email' => 'admin@test.com',
+            'Password' => bcrypt('321321321'),
+        ]);
+
+        Banner::create(); //Se crea el registro para guardar los banners en él
+        Galery::create(); //Se crea el registro para guardar las imagenes en él
+
+        Category::insert([
+            [
+                'name' => 'Collares y colgantes',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Pulseras',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Aretes',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Anillos',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Relojes',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 }
