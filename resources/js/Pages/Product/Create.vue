@@ -57,7 +57,7 @@
                 </div>
             </div>
                 <div class="text-right">
-                    <PrimaryButton @click="store">Publicar</PrimaryButton>
+                    <PrimaryButton :disabled="form.processing" @click="store">Publicar</PrimaryButton>
                 </div>
         </div>
     </AppLayout>
