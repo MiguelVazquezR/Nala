@@ -184,7 +184,7 @@ const logout = () => {
                     class="sm:hidden z-40 rounded-tl-[6px] rounded-bl-[6px] bg-white w-4/6 absolute right-0 top-14 min-h-[30%] max-h-[90%] overflow-y-scroll overflow-x-hidden shadow-lg border border-secondary pt-4">
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
-                            Profile
+                            Perfil
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('banners.index')" :active="route().current('banners.*')">
                             Banners
