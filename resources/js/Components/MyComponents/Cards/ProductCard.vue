@@ -13,8 +13,8 @@
         <p class="text-center">{{ product.name }}</p>
     </main>
     <footer class="mt-auto flex items-center justify-center space-x-10">
-        <p class="text-gray1" :class="product.discount_price ? 'line-through' : null">${{ product.price }}</p>
-        <p v-if="product.discount_price" class="text-center">${{ product.discount_price }}</p>
+        <p class="text-gray1" :class="product.discount_price ? 'line-through' : null">${{ product.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</p>
+        <p v-if="product.discount_price" class="text-center">${{ product.discount_price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</p>
     </footer>
     </Link>
 </template>
