@@ -29,7 +29,7 @@
                         <InputLabel value="Categría*" class="ml-3 mb-1" />
                         <el-select v-model="form.category" clearable placeholder="Seleccione"
                         no-data-text="No hay opciones disponibles" no-match-text="No se encontraron coincidencias">
-                        <el-option v-for="category in categories" :key="category" :label="category" :value="category" />
+                        <el-option v-for="category in categories" :key="category" :label="category.name" :value="category.name" />
                         </el-select>
                         <InputError :message="form.errors.category" />
                     </div>
@@ -92,13 +92,6 @@ data(){
     return {
         form,
         currentImage: 1,
-        categories: [
-            'Collares y colgantes',
-            'Pulseras',
-            'Anillos',
-            'Relojes',
-            'Aretes',
-        ],
     }
 },
 components:{
@@ -110,7 +103,8 @@ InputError,
 Back
 },
 props:{
-product: Object
+product: Object,
+categories: Array
 },
 methods:{
     update() {

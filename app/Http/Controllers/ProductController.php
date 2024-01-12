@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,9 @@ class ProductController extends Controller
     
     public function create()
     {
-        return inertia('Product/Create');
+        $categories = Category::all();
+
+        return inertia('Product/Create', compact('categories'));
     }
 
     
@@ -58,8 +61,9 @@ class ProductController extends Controller
     public function edit($product_id)
     {
         $product = Product::with('media')->find($product_id);
+        $categories = Category::all();
 
-        return inertia('Product/Edit', compact('product'));
+        return inertia('Product/Edit', compact('product', 'categories'));
     }
 
     

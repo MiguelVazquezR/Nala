@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GaleryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -41,4 +44,21 @@ Route::get('/producto/{product}', function ($product) {
 //------------------------------------------------------------------------------------------
 Route::resource('products', ProductController::class)->middleware('auth');
 Route::post('products/update-with-media/{product}', [ProductController::class, 'updateWithMedia'])->name('products.update-with-media');
+
+
+//Banners routes---------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
+Route::resource('banners', BannerController::class)->middleware('auth');
+Route::post('banners/update-with-media/{banner}', [ProductController::class, 'updateWithMedia'])->name('banners.update-with-media');
+
+
+//Galery routes---------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
+Route::resource('galeries', GaleryController::class)->middleware('auth');
+Route::post('galeries/update-with-media/{galery}', [ProductController::class, 'updateWithMedia'])->name('galeries.update-with-media');
+
+
+//Categories routes---------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
+Route::resource('categories', CategoryController::class)->middleware('auth');
 
