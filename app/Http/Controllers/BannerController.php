@@ -12,7 +12,10 @@ class BannerController extends Controller
      */
     public function index()
     {
-        return inertia('Banner/Index');
+        $banners = Banner::with('media')->where('id', 1)->first();
+
+        // return $banners;
+        return inertia('Banner/Index', compact('banners'));
     }
 
     /**
@@ -28,7 +31,24 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $banner = Banner::create();
+
+        // Guardar el archivo en la colección 'banner1'
+        if ($request->hasFile('banner1')) {
+            $banner->addMediaFromRequest('banner1')->toMediaCollection('banner1');
+        }
+
+        // Guardar el archivo en la colección 'banner2'
+        if ($request->hasFile('banner2')) {
+            $banner->addMediaFromRequest('banner2')->toMediaCollection('banner2');
+        }
+
+        // Guardar el archivo en la colección 'banner3'
+        if ($request->hasFile('banner3')) {
+            $banner->addMediaFromRequest('banner3')->toMediaCollection('banner3');
+        }
+
+
     }
 
     /**
