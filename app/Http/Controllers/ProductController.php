@@ -21,10 +21,10 @@ class ProductController extends Controller
     public function create()
     {
 
-        // $categories = Category::all();
+        $categories = Category::all();
         $products_quantity = Product::all()->count();
 
-        $categories = Category::whereNotIn('id', [1])->get('name');
+        // $categories = Category::whereNotIn('id', [1])->get('name');
 
 
         // return $products_quantity;
