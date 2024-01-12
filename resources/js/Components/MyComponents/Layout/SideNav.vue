@@ -16,9 +16,9 @@
                 <i v-if="productOptions" class="fa-solid fa-angle-down text-xs ml-3"></i>
                 <i v-else class="fa-solid fa-angle-up text-xs ml-3"></i>
             </p>
-            <ul v-if="productOptions" class="ml-2 *:cursor-pointer *:py-1 *:px-2 *:rounded-md">
-                <li @click="$inertia.get(route('products.create'))" :class="route().current('products.*') ? 'bg-primary' : '' " class="hover:bg-primary">Nuevo producto</li>
-                <li class="hover:bg-primary">Lista de productos</li>
+            <ul v-if="productOptions" class="ml-2 *:cursor-pointer *:py-1 *:px-2 *:rounded-md space-y-1">
+                <li @click="$inertia.get(route('products.create'))" :class="route().current('products.create') ? 'bg-primary' : '' " class="hover:bg-primary">Nuevo producto</li>
+                <li @click="$inertia.get(route('products.index'))" :class="route().current('products.index') ? 'bg-primary' : '' " class="hover:bg-primary">Lista de productos</li>
             </ul>
         </div>
     </div>

@@ -1,11 +1,11 @@
 <template>
-    <AppLayout title="Nuevo producto">
+    <AppLayout title="Editar producto">
         <div class="w-2/3 mx-auto rounded-md border border-secondary p-5">
-            <h1 class="font-bold text-lg">Agregar producto</h1>
+            <h1 class="font-bold text-lg">Editar <span class="text-primary ml-2">{{ product.name }}</span></h1>
             <div class="grid grid-cols-3 space-x-3 mt-3">
                 <div>
-                    <InputFilePreview v-show="currentImage == 1" @imagen="this.form.image_cover1 = $event;" />
-                    <InputFilePreview v-show="currentImage == 2" @imagen="this.form.image_cover2 = $event;" />
+                    <InputFilePreview v-show="currentImage == 1" :imageUrl="product.media[0]?.original_url" @imagen="this.form.image_cover1 = $event;" @cleared="form.image_cover1 = []" />
+                    <InputFilePreview v-show="currentImage == 2" :imageUrl="product.media[1]?.original_url" @imagen="this.form.image_cover2 = $event;" @cleared="form.image_cover2 = []" />
                     <p class="text-center mt-2">
                         <i @click="currentImage = currentImage - 1" v-if="currentImage == 2" class="fa-solid fa-angle-left text-xs mr-2 cursor-pointer p-1"></i>
                         Imagen {{ currentImage }} de 2
@@ -56,8 +56,14 @@
                     </div>
                 </div>
             </div>
-                <div class="text-right">
-                    <PrimaryButton @click="store">Publicar</PrimaryButton>
+                <div class="flex justify-end items-center space-x-2">
+                    <el-popconfirm confirm-button-text="Si" cancel-button-text="No" icon-color="#D90537" title="¿Eliminar?"
+                        @confirm="deleteProduct">
+                        <template #reference>
+                            <i @click.stop="" class="fa-regular fa-trash-can text-sm text-white cursor-pointer py-1 px-2 rounded-full bg-black"></i>
+                        </template>
+                    </el-popconfirm>
+                    <PrimaryButton @click="update">Actualizar</PrimaryButton>
                 </div>
         </div>
     </AppLayout>
@@ -76,12 +82,12 @@ import { useForm } from "@inertiajs/vue3";
 export default {
 data(){
      const form = useForm({
-        name: null,
-        category: null,
-        price: null,
-        discount_price: null,
-        image_cover1: null,
-        image_cover2: null,
+        name: this.product.name,
+        category: this.product.category,
+        price: this.product.price,
+        discount_price: this.product.discount_price,
+        image_cover1: this.product.media[0],
+        image_cover2: this.product.media[1],
     });
     return {
         form,
@@ -104,21 +110,43 @@ InputError,
 Back
 },
 props:{
-
+product: Object
 },
 methods:{
-    store() {
-    this.form.post(route("products.store"), {
-      onSuccess: () => {
-        this.$notify({
-          title: "Correcto",
-          message: "Se ha agregado un nuevo producto",
-          type: "success",
+    update() {
+        if (this.form.image_cover1 !== null || this.form.image_cover1 !== null) {
+        this.form.post(route("products.update-with-media", this.product.id), {
+          method: '_put',
+          onSuccess: () => {
+            this.$notify({
+                title: "Correcto",
+                message: "Se ha editado el producto",
+                type: "success",
+            });
+          },
         });
-      },
-    });
+      } else {
+        this.form.put(route("products.update", this.product.id), {
+          onSuccess: () => {
+            this.$notify({
+                title: "Correcto",
+                message: "Se ha editado el producto",
+                type: "success",
+            });
+          },
+        });
+      }
+    },
+    deleteProduct() {
+        this.$inertia.delete(route('products.destroy', this.product.id));
+        this.$notify({
+                title: "Correcto",
+                message: "Se ha eliminado el producto",
+                type: "success",
+            });
+    }
   },
+  
+}
 
-}
-}
 </script>
