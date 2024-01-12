@@ -31,22 +31,22 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        $banner = Banner::create();
+        // $banner = Banner::create();
 
-        // Guardar el archivo en la colección 'banner1'
-        if ($request->hasFile('banner1')) {
-            $banner->addMediaFromRequest('banner1')->toMediaCollection('banner1');
-        }
+        // // Guardar el archivo en la colección 'banner1'
+        // if ($request->hasFile('banner1')) {
+        //     $banner->addMediaFromRequest('banner1')->toMediaCollection('banner1');
+        // }
 
-        // Guardar el archivo en la colección 'banner2'
-        if ($request->hasFile('banner2')) {
-            $banner->addMediaFromRequest('banner2')->toMediaCollection('banner2');
-        }
+        // // Guardar el archivo en la colección 'banner2'
+        // if ($request->hasFile('banner2')) {
+        //     $banner->addMediaFromRequest('banner2')->toMediaCollection('banner2');
+        // }
 
-        // Guardar el archivo en la colección 'banner3'
-        if ($request->hasFile('banner3')) {
-            $banner->addMediaFromRequest('banner3')->toMediaCollection('banner3');
-        }
+        // // Guardar el archivo en la colección 'banner3'
+        // if ($request->hasFile('banner3')) {
+        //     $banner->addMediaFromRequest('banner3')->toMediaCollection('banner3');
+        // }
 
 
     }

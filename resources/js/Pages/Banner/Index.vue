@@ -34,7 +34,7 @@
         ></i>
     </p>
     <div class="text-right">
-        <PrimaryButton :disabled="form.processing" @click="store">Guardar</PrimaryButton>
+        <PrimaryButton :disabled="form.processing" @click="update">Guardar</PrimaryButton>
     </div>
 </div>
     </div>
@@ -59,8 +59,7 @@ export default {
     });
     return {
       form,
-      currentImage: 1,
-      canEdit: false
+      currentImage: 1
     };
   },
   components: {
@@ -72,8 +71,7 @@ export default {
     banners: Object,
   },
   methods: {
-    store() {
-      if (this.canEdit) {
+    update() {
         console.log('edit');
         this.form.post(route("banners.update-with-media", this.banners.id), {
           method: '_put',
@@ -86,28 +84,11 @@ export default {
             window.location.reload();
           },
         });
-      } else {
-        this.form.post(route("banners.store"), {
-          onSuccess: () => {
-            this.$notify({
-              title: "Correcto",
-              message: "Se han agregado banners",
-              type: "success",
-            });
-            window.location.reload();
-          },
-        });
-      }
     },
     getMediaUrl(collectionName) {
         const media = this.banners.media.find(img => img.collection_name === collectionName);
         return media ? media.original_url : null;
     },
   },
-  mounted() {
-    if (this.banners !== null) {
-        this.canEdit = true;
-    }
-  }
 };
 </script>

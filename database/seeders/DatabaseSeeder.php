@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Banner;
 use App\Models\Category;
+use App\Models\Galery;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -44,5 +46,8 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now()
             ],
         );
+
+        Banner::create(); //Se crea el registro para guardar los banners en él
+        Galery::create(); //Se crea el registro para guardar las imagenes en él
     }
 }

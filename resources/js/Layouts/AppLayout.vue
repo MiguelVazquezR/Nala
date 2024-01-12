@@ -123,7 +123,7 @@ const logout = () => {
                                         </button>
 
                                         <span v-else class="inline-flex rounded-full">
-                                            <button type="button" :class="route().current('profile.*') ? 'border-primary' : ''" class="font-bold inline-flex items-center py-2 px-3 border border-gray-200 text-base rounded-full text-gray-500 bg-transparent hover:text-gray-800 active:border-primary focus:border-primary transition ease-in-out duration-200">
+                                            <button type="button" :class="route().current('profile.*') ? 'border-primary' : ''" class="font-bold inline-flex items-center py-2 px-[13px] border border-gray-200 text-base rounded-full text-gray-500 bg-transparent hover:text-gray-800 active:border-primary focus:border-primary transition ease-in-out duration-200">
                                                 {{ 'N' }}
                                             </button>
                                         </span>
