@@ -1,10 +1,10 @@
 <template>
   <AppLayout title="Editar producto">
-    <div class="w-2/3 mx-auto rounded-md border border-secondary p-5">
-      <h1 class="font-bold text-lg">
+    <div class="lg:w-2/3 mx-auto rounded-md lg:border border-secondary p-5">
+      <h1 class="font-bold text-lg text-center lg:text-left">
         Editar <span class="text-primary ml-2">{{ product.name }}</span>
       </h1>
-      <div class="grid grid-cols-3 space-x-3 mt-3">
+      <div class="lg:grid grid-cols-3 space-x-3 mt-3">
         <div>
           <InputFilePreview
             v-show="currentImage == 1"
@@ -117,7 +117,7 @@
           </div>
         </div>
       </div>
-      <div class="flex justify-end items-center space-x-2">
+      <div class="flex justify-end items-center space-x-2 mt-7 lg:mt-0">
         <el-popconfirm
           confirm-button-text="Si"
           cancel-button-text="No"
