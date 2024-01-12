@@ -10,7 +10,10 @@ class ProductController extends Controller
     
     public function index()
     {
-        return inertia('Product/Index');
+        $products = Product::with('media')->get();
+
+        // return $products;
+        return inertia('Product/Index', compact('products'));
     }
 
     
@@ -28,9 +31,20 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'discount_price' => 'nullable|numeric|min:0',
         ]);
+        
+        $product = Product::create($request->except('media'));
 
-        Product::create($request->except('media'));
+        // Guardar el archivo en la colección 'image_cover1'
+        if ($request->hasFile('image_cover1')) {
+            $product->addMediaFromRequest('image_cover1')->toMediaCollection('cover1');
+        }
 
+        // Guardar el archivo en la colección 'image_cover2'
+        if ($request->hasFile('image_cover2')) {
+            $product->addMediaFromRequest('image_cover2')->toMediaCollection('cover2');
+        }
+
+        return to_route('products.index');
         
     }
 

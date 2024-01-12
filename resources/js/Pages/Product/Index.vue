@@ -1,10 +1,27 @@
 <template>
-    <div>
+    <AppLayout title="Productos">
         
-    </div>
+    </AppLayout>
 </template>
+
 <script>
+import AppLayout from "@/Layouts/AppLayout.vue";
+
 export default {
+data() {
+    return {
+
+    }
+},
+components:{
+AppLayout,
+},
+props:{
+products: Array
+},
+methods:{
+
+},
     
 }
 </script>
