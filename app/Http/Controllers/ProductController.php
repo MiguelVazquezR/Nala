@@ -36,10 +36,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|max:120',
             'category' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'discount_price' => 'nullable|numeric|min:0',
+            'price' => 'required|numeric|min:0|max:999999.99',
+            'discount_price' => 'nullable|numeric|min:0|max:999999.99',
         ]);
         
         $product = Product::create($request->except(['image_cover1', 'image_cover1']));
@@ -79,10 +79,10 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|max:120',
             'category' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'discount_price' => 'nullable|numeric|min:0',
+            'price' => 'required|numeric|min:0|max:999999.99',
+            'discount_price' => 'nullable|numeric|min:0|max:999999.99',
         ]);
 
         $product->update($request->except(['image_cover1', 'image_cover1']));
