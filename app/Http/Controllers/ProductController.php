@@ -13,7 +13,6 @@ class ProductController extends Controller
     {
         $products = Product::with('media')->get();
 
-        // return $products;
         return inertia('Product/Index', compact('products'));
     }
 
@@ -21,13 +20,8 @@ class ProductController extends Controller
     public function create()
     {
 
-        $categories = Category::all();
         $products_quantity = Product::all()->count();
-
-        // $categories = Category::whereNotIn('id', [1])->get('name');
-
-
-        // return $products_quantity;
+        $categories = Category::whereNotIn('id', [1])->get('name');
 
         return inertia('Product/Create', compact('categories', 'products_quantity'));
     }
@@ -39,7 +33,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:120',
             'category' => 'required|string',
             'price' => 'required|numeric|min:0|max:999999.99',
-            'discount_price' => 'nullable|numeric|min:0|max:999999.99',
+            'discount_price' => 'nullable|numeric|min:0|max:999999.99|lt:'.$request->price,
         ]);
         
         $product = Product::create($request->except(['image_cover1', 'image_cover1']));
@@ -70,8 +64,6 @@ class ProductController extends Controller
         $product = Product::with('media')->find($product_id);
         $categories = Category::whereNotIn('id', [1])->get('name');
 
-        // return $product;
-
         return inertia('Product/Edit', compact('product', 'categories'));
     }
 
@@ -82,7 +74,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:120',
             'category' => 'required|string',
             'price' => 'required|numeric|min:0|max:999999.99',
-            'discount_price' => 'nullable|numeric|min:0|max:999999.99',
+            'discount_price' => 'nullable|numeric|min:0|max:999999.99|lt:'.$request->price,
         ]);
 
         $product->update($request->except(['image_cover1', 'image_cover1']));

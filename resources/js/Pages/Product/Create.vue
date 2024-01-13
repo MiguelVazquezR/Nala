@@ -62,7 +62,7 @@
         </div>
         <div v-else class="text-center text-gray-500">
             <p class="text-3xl mb-3">¡Lo sentimos!</p>
-            <p class="">Has excedido el límite de productos disponibles (50). Para poder aumentar el límite ponte en contacto con el equipo de DTW</p>
+            <p class="">Has alcanzado el límite de productos disponibles (50). Para poder aumentar el límite ponte en contacto con el equipo de DTW</p>
         </div>
     </AppLayout>
   

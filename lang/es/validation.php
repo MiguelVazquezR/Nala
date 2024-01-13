@@ -140,6 +140,6 @@ return [
         'name' => 'nombre',
         'category' => 'categoría',
         'price' => 'precio',
-        
+        'discount_price' => 'precio con descuento',
     ],
 ];

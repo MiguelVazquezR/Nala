@@ -4,7 +4,7 @@
         <section class="mt-2 py-8 lg:mx-48 lg:grid grid-cols-2 gap-x-1">
             <Carousel v-bind="settings" :itemsToShow="1">
                 <Slide v-for="slide in product.media" :key="slide">
-                    <img :src="slide.original_url" class="object-cover h-full w-full">
+                    <img :src="slide.original_url" class="object-contain h-full w-full">
                 </Slide>
                 <template #addons>
                     <Pagination />
