@@ -115,19 +115,19 @@ const disableTwoFactorAuthentication = () => {
         </template>
 
         <template #content>
-            <h3 v-if="twoFactorEnabled && ! confirming" class="text-lg font-medium text-gray-900 dark:text-gray-100">
+            <h3 v-if="twoFactorEnabled && ! confirming" class="text-lg font-medium text-gray-900 darrk:text-gray-100">
                 Ha habilitado la autenticación de dos factores.
             </h3>
 
-            <h3 v-else-if="twoFactorEnabled && confirming" class="text-lg font-medium text-gray-900 dark:text-gray-100">
+            <h3 v-else-if="twoFactorEnabled && confirming" class="text-lg font-medium text-gray-900 darrk:text-gray-100">
                 Termine de habilitar la autenticación de dos factores.
             </h3>
 
-            <h3 v-else class="text-lg font-medium text-gray-900 dark:text-gray-100">
+            <h3 v-else class="text-lg font-medium text-gray-900 darrk:text-gray-100">
                 No ha habilitado la autenticación de dos factores.
             </h3>
 
-            <div class="mt-3 max-w-xl text-sm text-gray-600 dark:text-gray-400">
+            <div class="mt-3 max-w-xl text-sm text-gray-600 darrk:text-gray-400">
                 <p>
                     Cuando la autenticación de dos factores está habilitada, se le solicitará un token aleatorio seguro durante la autenticación. Puede recuperar este token desde la aplicación Google Authenticator de su teléfono.
                 </p>
@@ -135,7 +135,7 @@ const disableTwoFactorAuthentication = () => {
 
             <div v-if="twoFactorEnabled">
                 <div v-if="qrCode">
-                    <div class="mt-4 max-w-xl text-sm text-gray-600 dark:text-gray-400">
+                    <div class="mt-4 max-w-xl text-sm text-gray-600 darrk:text-gray-400">
                         <p v-if="confirming" class="font-semibold">
                             Para terminar de habilitar la autenticación de dos factores, escanee el siguiente código QR usando la aplicación de autenticación de su teléfono o ingrese la clave de configuración y proporcione el código OTP generado.
                         </p>
@@ -147,7 +147,7 @@ const disableTwoFactorAuthentication = () => {
 
                     <div class="mt-4 p-2 inline-block bg-white" v-html="qrCode" />
 
-                    <div v-if="setupKey" class="mt-4 max-w-xl text-sm text-gray-600 dark:text-gray-400">
+                    <div v-if="setupKey" class="mt-4 max-w-xl text-sm text-gray-600 darrk:text-gray-400">
                         <p class="font-semibold">
                                     Clave de configuración: <span v-html="setupKey"></span>
                         </p>
@@ -173,13 +173,13 @@ const disableTwoFactorAuthentication = () => {
                 </div>
 
                 <div v-if="recoveryCodes.length > 0 && ! confirming">
-                    <div class="mt-4 max-w-xl text-sm text-gray-600 dark:text-gray-400">
+                    <div class="mt-4 max-w-xl text-sm text-gray-600 darrk:text-gray-400">
                         <p class="font-semibold">
                             Guarde estos códigos de recuperación en un administrador de contraseñas seguro. Se pueden utilizar para recuperar el acceso a su cuenta si pierde su dispositivo de autenticación de dos factores.
                         </p>
                     </div>
 
-                    <div class="grid gap-1 max-w-xl mt-4 px-4 py-4 font-mono text-sm bg-gray-100 dark:bg-gray-900 dark:text-gray-100 rounded-lg">
+                    <div class="grid gap-1 max-w-xl mt-4 px-4 py-4 font-mono text-sm bg-gray-100 darrk:bg-gray-900 darrk:text-gray-100 rounded-lg">
                         <div v-for="code in recoveryCodes" :key="code">
                             {{ code }}
                         </div>

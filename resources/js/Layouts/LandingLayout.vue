@@ -3,8 +3,8 @@
 
         <Head :title="title" />
 
-        <div class="min-h-screen flex flex-col bg-white dark:bg-gray-900">
-            <nav class="bg-white dark:bg-gray-800 border-b border-secondary dark:border-gray-700">
+        <div class="min-h-screen flex flex-col bg-white darrk:bg-gray-900">
+            <nav class="bg-white darrk:bg-gray-800 border-b border-secondary darrk:border-gray-700">
                 <!-- Primary Navigation Menu -->
                 <div class="mx-auto px-4 sm:px-6 lg:px-10">
                     <div class="flex justify-between items-center h-20">
@@ -19,7 +19,7 @@
                             <Dropdown align="right" width="48">
                                 <template #trigger>
                                     <button
-                                        class="inline-flex items-center justify-center p-2 rounded-md dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-black focus:text-white dark:focus:bg-gray-900 dark:focus:text-gray-400 transition duration-150 ease-in-out"
+                                        class="inline-flex items-center justify-center p-2 rounded-md darrk:text-gray-500 hover:text-gray-500 darrk:hover:text-gray-400 hover:bg-gray-100 darrk:hover:bg-gray-900 focus:outline-none focus:bg-black focus:text-white darrk:focus:bg-gray-900 darrk:focus:text-gray-400 transition duration-150 ease-in-out"
                                         @click="showingNavigationDropdown = !showingNavigationDropdown">
                                         <svg class="size-7" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
