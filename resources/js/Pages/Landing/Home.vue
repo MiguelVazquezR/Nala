@@ -51,7 +51,7 @@
             <article class="items-center rounded-[3px] mt-1 py-1 px-3 lg:px-14 active:cursor-grabbing">
                 <Carousel v-bind="galerySettings" :breakpoints="breakpoints">
                     <Slide v-for="slide in galery.media" :key="slide" class="px-1">
-                        <img :src="slide.original_url" class="h-28 lg:h-64 w-full object-contain">
+                        <img :src="slide.original_url" class="h-28 lg:h-64 w-full object-cover">
                     </Slide>
                 </Carousel>
             </article>

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('category');
-            $table->float('price');
-            $table->float('discount_price')->nullable();
+            $table->unsignedFloat('price');
+            $table->unsignedFloat('discount_price')->nullable();
             $table->timestamps();
         });
     }
