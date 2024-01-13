@@ -72,10 +72,10 @@
                     <div class="mt-2">
                         <h2>Encuentranos en nuestras redes sociales</h2>
                         <ul class="flex items-center space-x-2">
-                            <a href="#">
+                            <a href="https://www.facebook.com/profile.php?id=100057557755446&mibextid=LQQJ4d">
                                 <i class="fa-brands fa-facebook"></i>
                             </a>
-                            <a href="#">
+                            <a href="https://www.instagram.com/nala_jewlry?igsh=MWVraHAzZHY2YXhxaQ%3D%3D&utm_source=qr">
                                 <i class="fa-brands fa-square-instagram"></i>
                             </a>
                         </ul>
