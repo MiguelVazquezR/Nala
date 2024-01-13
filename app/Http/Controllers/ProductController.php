@@ -74,7 +74,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:120',
             'category' => 'required|string',
             'price' => 'required|numeric|min:0|max:999999.99',
-            'discount_price' => 'nullable|numeric|min:0|max:999999.99',
+            'discount_price' => 'nullable|numeric|min:0|max:999999.99|lt:'.$request->price,
         ]);
 
         $product->update($request->except(['image_cover1', 'image_cover1']));
