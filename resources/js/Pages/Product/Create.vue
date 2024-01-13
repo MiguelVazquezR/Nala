@@ -1,7 +1,7 @@
 <template>
     <AppLayout title="Nuevo producto">
         <div v-if="products_quantity < 50 " class="lg:w-2/3 mx-auto rounded-md lg:border border-secondary p-5">
-            <h1 class="font-bold text-lg text-center lg:text-left">Agregar producto</h1>
+            <h1 class="text-lg text-center lg:text-left">Agregar producto</h1>
             <div class="lg:grid grid-cols-3 space-x-3 mt-3">
                 <div>
                     <InputFilePreview v-show="currentImage == 1" @imagen="this.form.image_cover1 = $event;" />
