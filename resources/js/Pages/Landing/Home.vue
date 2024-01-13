@@ -10,7 +10,7 @@
         </header>
 
         <!-- banner -->
-        <section class="h-20 lg:h-64 w-full bg-red-100 mt-2">
+        <section class="h-20 lg:h-64 w-full mt-2">
             <Carousel v-bind="bannerSettings" :itemsToShow="1">
                 <Slide v-for="slide in banners.media" :key="slide" class="px-[2px]">
                     <img :src="slide.original_url" class="h-20 lg:h-64 w-full object-cover">
