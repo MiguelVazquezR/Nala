@@ -1,7 +1,7 @@
 <template>
   <AppLayout title="Editar producto">
     <div class="lg:w-2/3 mx-auto rounded-md lg:border border-secondary p-5">
-      <h1 class="font-bold text-lg text-center lg:text-left">
+      <h1 class="text-lg text-center lg:text-left">
         Editar <span class="text-primary ml-2">{{ product.name }}</span>
       </h1>
       <div class="lg:grid grid-cols-3 space-x-3 mt-3">

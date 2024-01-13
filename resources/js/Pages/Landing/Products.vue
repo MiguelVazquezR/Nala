@@ -115,9 +115,11 @@ export default {
     },
     watch: {
         currentCategory(newVal) {
+            this.removeQuery();
             // Agrega la variable currentTab=newVal a la URL para mejorar la navegacion al actalizar o cambiar de pagina
             const currentURL = new URL(window.location.href);
             currentURL.searchParams.set('filter', newVal);
+
 
             // Actualiza la URL
             window.history.replaceState({}, document.title, currentURL.href);

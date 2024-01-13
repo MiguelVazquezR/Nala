@@ -1,7 +1,7 @@
 <template>
   <AppLayout title="Galería">
     <div class="mx-2 lg:mx-16">
-        <h1 class="font-bold text-lg">Galería</h1>
+        <h1 class="text-lg">Galería</h1>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
             <InputFilePreview v-for="(file,index) in form.images" :key="index" :canDelete="index == (form.images.length - 2)"
                 @imagen="saveImage" @cleared="handleCleared(index)" class="my-2"
