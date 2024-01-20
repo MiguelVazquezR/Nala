@@ -40,7 +40,7 @@ export default {
                 itemsToShow: 1,
                 snapAlign: 'start',
             },
-            wpUrl: 'https://api.whatsapp.com/send?phone=523310223000&text=Hola!%20vi%20tu%20página,%20me%20interesa%20el%20producto%20*' + this.product.name + '*',
+            wpUrl: 'https://api.whatsapp.com/send?phone=523328415143&text=Hola!%20vi%20tu%20página,%20me%20interesa%20el%20producto%20*' + this.product.name + '*',
         };
     },
     components: {
