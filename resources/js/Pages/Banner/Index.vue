@@ -10,13 +10,13 @@
     />
     <InputFilePreview
         v-show="currentImage == 2"
-        @imagen="this.form.banner2 = $event"
+        @imagen="this.form.banner2 = $event; clearedBanner2 = false"
         :imageUrl="getMediaUrl('banner2')"
         @cleared="form.clearedBanner2 = true"
     />
     <InputFilePreview
         v-show="currentImage == 3"
-        @imagen="this.form.banner3 = $event"
+        @imagen="this.form.banner3 = $event; clearedBanner3 = false"
         :imageUrl="getMediaUrl('banner3')"
         @cleared="form.clearedBanner3 = true"
     />

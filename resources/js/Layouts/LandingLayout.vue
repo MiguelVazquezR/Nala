@@ -86,9 +86,9 @@
                 </section>
                 <section class="py-2 border-y border-secondary flex items-center justify-between px-3 text-[10px] sm:text-sm">
                     <p class="text-gray1">&copy; 2024 • Nala.</p>
-                    <a href="https://dtw.com.mx" target="_blank" class="flex items-center space-x-2">
-                        <small>by Digtital Tech Work</small>
-                        <DTWMark class="w-5" />
+                    <a href="https://app.dtw.com.mx" target="_blank" class="flex items-center space-x-2">
+                        <small>BY</small>
+                        <DTWMark class="w-20" />
                     </a>
                 </section>
             </footer>
