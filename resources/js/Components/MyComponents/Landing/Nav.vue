@@ -10,7 +10,7 @@
             Productos
             </Link>
         </li>
-        <a href="https://api.whatsapp.com/send?phone=523310223000&text=Hola!%20vi%20tu%20página%20,%20me%20interesan%20sus%20productos!"
+        <a href="https://api.whatsapp.com/send?phone=523328415143&text=Hola!%20vi%20tu%20página%20,%20me%20interesan%20sus%20productos!"
             target="_blank" class="bg-black text-white rounded-full size-6 flex items-center justify-center">
             <i class="fa-brands fa-whatsapp text-sm"></i>
         </a>

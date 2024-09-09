@@ -61,12 +61,15 @@
                     <div class="mt-2">
                         <h2>Contáctanos</h2>
                         <p class="flex items-center space-x-2 text-xs">
-                            <span>3310223000</span>
-                            <a href="https://api.whatsapp.com/send?phone=523310223000&text=Hola!%20vi%20tu%20página%20,%20me%20interesan%20sus%20productos!"
+                            <span>3328415143</span>
+                            <a href="https://api.whatsapp.com/send?phone=523328415143&text=Hola!%20vi%20tu%20página%20,%20me%20interesan%20sus%20productos!"
                                 target="_blank"
                                 class="bg-black text-white rounded-full size-4 flex items-center justify-center">
                                 <i class="fa-brands fa-whatsapp text-xs"></i>
                             </a>
+                        </p>
+                        <p class="flex items-center space-x-2 text-xs">
+                            <span>nalajewelry0@gmail.com</span>
                         </p>
                     </div>
                     <div class="mt-2">
@@ -83,9 +86,9 @@
                 </section>
                 <section class="py-2 border-y border-secondary flex items-center justify-between px-3 text-[10px] sm:text-sm">
                     <p class="text-gray1">&copy; 2024 • Nala.</p>
-                    <a href="https://dtw.com.mx" target="_blank" class="flex items-center space-x-2">
-                        <small>by Digtital Tech Work</small>
-                        <DTWMark class="w-5" />
+                    <a href="https://app.dtw.com.mx" target="_blank" class="flex items-center space-x-2">
+                        <small>BY</small>
+                        <DTWMark class="w-20" />
                     </a>
                 </section>
             </footer>
@@ -118,7 +121,7 @@ export default {
                 },
                 {
                     label: 'Enviar mensaje',
-                    route: 'https://api.whatsapp.com/send?phone=523310223000&text=Hola!%20vi%20tu%20página%20,%20me%20interesan%20sus%20productos!',
+                    route: 'https://api.whatsapp.com/send?phone=523328415143&text=Hola!%20vi%20tu%20página%20,%20me%20interesan%20sus%20productos!',
                     as: 'a'
                 },
             ],
